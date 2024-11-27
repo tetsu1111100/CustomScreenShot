@@ -1,0 +1,44 @@
+# Windows 系統生成的檔案
+Thumbs.db
+ehthumbs.db
+
+# Visual Studio 相關檔案
+.vs/
+.vscode/
+.idea/
+# 建置檔案及資料夾
+bin/
+obj/
+
+# 編譯時自動生成的檔案
+*.exe
+*.dll
+*.pdb
+*.cache
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+
+# NuGet package 資料夾
+packages/
+
+# ASP.NET temporary ASP.NET files
+Temporary ASP.NET Files/
+
+# 用於 CI/CD 的資料夾
+*.log
+*.vspscc
+*.vssscc
+
+# Rider 設定檔
+.idea/
+
+# JetBrains Rider 設定檔
+.idea/
+
+# Visual Studio for Mac 檔案
+.vscode/
+
+# 系統檔案
+Desktop.ini
