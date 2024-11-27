@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -18,7 +19,7 @@ namespace CustomScreenShot
         public ScreenshotForm()
         {
             InitializeComponent();
-            SetProcessDPIAware(); // 啟用高 DPI 支援，使其支援多螢幕&不同解析度的情況
+            SetProcessDPIAware(); // 啟用高 DPI 支援，使其支援多螢幕與不同解析度的情況
 
             this.DoubleBuffered = true;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -104,6 +105,9 @@ namespace CustomScreenShot
 
                     // 儲存至剪貼簿
                     Clipboard.SetImage(capturedImage);
+
+                    //透過小畫家開啟
+                    OpenPaintAndPaste();
                 }
 
                 Close();
@@ -135,6 +139,34 @@ namespace CustomScreenShot
                     e.Graphics.DrawRectangle(pen, selectionRectangle);
                 }
             }
+        }
+
+        // 啟動小畫家並將剪貼簿的內容粘貼到小畫家
+        private void OpenPaintAndPaste()
+        {
+            try
+            {
+                // 啟動小畫家，使用 mspaint 開啟
+                Process.Start("mspaint"); //小畫家
+
+                //Process.Start("mspaint3d");
+                //Process.Start("ms-paint");
+                //Process.Start("explorer", "ms-paint3d:");
+                //Process.Start("explorer", "shell:::{D2E4A29D-61E3-4B65-BF03-9FCA9A69AA9A}");
+                //Process.Start("ms-paint3d:");
+                //Process.Start("explorer.exe", "shell:::{D2E4A29D-61E3-4B65-BF03-9FCA9A69AA9A}");
+
+                // 等待一段時間讓小畫家開啟
+                System.Threading.Thread.Sleep(2000); // 2秒鐘的延遲時間，視系統速度而定
+
+                // 模擬 Ctrl+V 以粘貼剪貼簿中的內容
+                SendKeys.Send("^v");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());                
+            }
+            
         }
     }
 }
